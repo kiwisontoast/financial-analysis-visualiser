@@ -8,6 +8,10 @@ import tkinter as tk
 from tkinter import ttk
 import sv_ttk
 
+def on_closing():
+    plt.close('all')  # Close all matplotlib figures
+    root.quit()       # Stop the mainloop
+    root.destroy()    # Destroy the window[1][2]
 
 def update_graph():
     ticker = ticker_entry.get().upper()
@@ -59,11 +63,22 @@ def update_graph():
         print(f"Error: {e}")
         r_squared_label.config(
             text="Error: Invalid ticker or data unavailable")
+    pass
 
+
+
+def on_closing():
+    plt.close('all')  # Close all matplotlib figures
+    root.quit()       # Stop the mainloop
+    root.destroy()    # Destroy the window[1]
 
 # Create the main window
 root = tk.Tk()
 root.title("Stock Price vs n^2 Function")
+
+# Set the window close handler - remove the [1][8] indexing
+root.protocol("WM_DELETE_WINDOW", on_closing)
+
 
 # Create and pack the input field and button
 frame = ttk.Frame(root, padding="10")
