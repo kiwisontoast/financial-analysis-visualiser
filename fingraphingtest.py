@@ -26,19 +26,21 @@ def quadratic(x, coef):
 def cubic(x, coef):
     return coef * (x**3)
 
-def exponential(x, coef):
-    # Limiting exponential growth to prevent overflow
-    return coef * (2**np.minimum(x, 30))
-
 def factorial(x, coef):
-    # Using a list comprehension with regular factorial calculation
     def fact(n):
         if n <= 1:
             return 1
         return n * fact(n-1)
     
-    # Limiting factorial to prevent overflow
-    return coef * np.array([fact(min(int(i), 10)) for i in x])
+    # Smooth out the scaling to avoid jumps
+    x_scaled = x / len(x) * 12  # Reduced to 12 to avoid overflow while maintaining smoothness
+    # Use float values instead of int to avoid discrete jumps
+    return coef * np.array([fact(min(float(i), 12)) for i in x_scaled])
+
+def exponential(x, coef):
+    # Reduce the growth rate significantly to avoid cutoff
+    # Using log base 2 instead of e to slow down growth
+    return coef * (2 ** (x / 20))  # Divide by 20 to slow down the growth rate
 
 # Dictionary of available functions with their display names
 FUNCTIONS = {
