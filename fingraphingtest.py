@@ -87,6 +87,29 @@ def toggle_comparison_mode():
         if compare_2_var.get() == 0:  # Hide result if neither checkbox is active
             comparison_result_label.grid_remove()
 
+def toggle_theme():
+    current_theme = sv_ttk.get_theme()
+    if current_theme == "dark":
+        sv_ttk.set_theme("light")
+        theme_toggle_button.config(text="Switch to Dark Mode")
+        fig.patch.set_facecolor('white')
+        ax.set_facecolor('white')
+        ax.tick_params(colors='black')
+        ax.set_title(ax.get_title(), color='black')
+        ax.set_xlabel(ax.get_xlabel(), color='black')
+        ax.set_ylabel(ax.get_ylabel(), color='black')
+        ax.legend(facecolor='white', edgecolor='black', labelcolor='black')
+    else:
+        sv_ttk.set_theme("dark")
+        theme_toggle_button.config(text="Switch to Light Mode")
+        fig.patch.set_facecolor('#333333')
+        ax.set_facecolor('#333333')
+        ax.tick_params(colors='white')
+        ax.set_title(ax.get_title(), color='white')
+        ax.set_xlabel(ax.get_xlabel(), color='white')
+        ax.set_ylabel(ax.get_ylabel(), color='white')
+        ax.legend(facecolor='gray', edgecolor='white', labelcolor='white')
+    canvas.draw()
 
 
 def get_stock_data(ticker, start_date, end_date):
@@ -173,9 +196,28 @@ root = tk.Tk()
 root.title("Stock Price vs Big O Complexity Comparator")
 root.protocol("WM_DELETE_WINDOW", on_closing)
 
+# Adjust window size to 95% of screen height
+screen_width = root.winfo_screenwidth()
+screen_height = root.winfo_screenheight()
+window_height = int(screen_height * 0.7)
+window_width = screen_width  # Full screen width
+root.geometry(f"{window_width}x{window_height}+0+0")
+
+
 # Create main frame
 frame = ttk.Frame(root, padding="10")
 frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
+
+# Configure grid weights for root and frame
+root.grid_rowconfigure(0, weight=1)  # Make the frame expand vertically
+root.grid_columnconfigure(0, weight=1)  # Make the frame expand horizontally
+frame.grid_rowconfigure(6, weight=1)  # Row for the graph
+frame.grid_columnconfigure(0, weight=1)  # Column for the graph
+
+
+# Add the theme toggle button
+theme_toggle_button = ttk.Button(frame, text="Switch to Light Mode", command=toggle_theme)
+theme_toggle_button.grid(row=6, column=1, sticky=tk.W, pady=5)
 
 # Create checkboxes for comparing 2 or 3 stocks
 compare_2_var = tk.IntVar(value=0)
