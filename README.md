@@ -1,5 +1,5 @@
 # Financial-Analysis-Visualiser
-Financial Graphing Test is a visualization tool that compares stock price patterns with Big O complexity patterns. It helps users to understand how different stock price movements correlate with various mathematical growth patterns by providing real-time data visualization and comparison.
+Financial Analysis Visualiser is a visualization tool that compares stock price patterns with Big O complexity patterns. It helps users to understand how different stock price movements correlate with various mathematical growth patterns by providing real-time data visualization and comparison.
 
 ## Key Features
 - Compares up to three different stocks simultaneously 
