@@ -9,17 +9,14 @@ import tkinter as tk
 from tkinter import ttk
 import sv_ttk
 
+
 # Define functions for different Big O complexities
-
-
 def constant(x, coef):
     """
     Constant complexity function.
-
     Args:
         x (numpy.ndarray): Input array
         coef (float): Coefficient for scaling
-
     Returns:
         numpy.ndarray: Constant values array
     """
@@ -230,7 +227,6 @@ def toggle_theme():
     """
     current_theme = sv_ttk.get_theme()
     if current_theme == "dark":
-        # Switch to light theme
         sv_ttk.set_theme("light")
         theme_toggle_button.config(text="Switch to Dark Mode")
         fig.patch.set_facecolor("white")
@@ -255,8 +251,6 @@ def toggle_theme():
 
 
 # Function to get stock data
-
-
 def get_stock_data(ticker, start_date, end_date):
     """
     Fetch stock data for a given ticker and date range.
@@ -284,12 +278,10 @@ def get_stock_data(ticker, start_date, end_date):
 def calculate_r_squared(data, func, coefficient):
     """
     Calculate R-squared value for a given data and complexity function.
-
     Args:
         data (pandas.Series): Stock data
         func (function): Complexity function
         coefficient (float): Coefficient for scaling
-
     Returns:
         tuple: R-squared value and comparison values
     """
@@ -417,7 +409,7 @@ Main application window.
 
 This window contains all GUI elements and handles user interactions.
 """
-root.title("Stock Price vs Big O Complexity Comparator")
+root.title("Financial Analysis Visualizer")
 root.protocol("WM_DELETE_WINDOW", on_closing)
 
 # Dynamic sizing
