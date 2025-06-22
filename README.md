@@ -1,6 +1,5 @@
 # Financial-Analysis-Visualiser
 Financial Analysis Visualiser is a visualization tool that compares stock price patterns with Big O complexity patterns. It helps users to understand how different stock price movements correlate with various mathematical growth patterns by providing real-time data visualization and comparison.
-Downloadable as exe @ https://finatk.devshroff.com/
 
 ## Key Features
 - Compares up to three different stocks simultaneously 
